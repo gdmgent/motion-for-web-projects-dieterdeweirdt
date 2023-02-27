@@ -14,11 +14,24 @@ h1{
     padding: 0;
     color:transparent;
     background-clip: text;
-    background: transparent linear-gradient(104deg, #B000F0 0%, #AE01EF 0%, #007079 100%) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(104deg, #B000F0 0%, #AE01EF 0%, #5d7900 100%) 0% 0% no-repeat padding-box;
+    background-size: 200% 200%;
+    background-position: 0% 0%;
     -webkit-color: transparent;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
-    -webkit-background: transparent linear-gradient(104deg, #B000F0 0%, #AE01EF 0%, #007079 100%) 0% 0% no-repeat padding-box;
+    -webkit-background: transparent linear-gradient(104deg, #B000F0 0%, #AE01EF 0%, #797700 100%) 0% 0% no-repeat padding-box;
+    animation: gradientmove 6s linear infinite;
+    animation-direction: alternate;
+}
+
+@keyframes gradientmove {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
 }
 
 .circle {
