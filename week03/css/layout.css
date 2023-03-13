@@ -1,0 +1,64 @@
+body {
+    display:grid;
+    min-height: 100vh;
+    grid-template-columns: 1fr 4fr 2fr;
+    grid-template-rows: 100px auto auto;
+    grid-template-areas: 
+        "header header header"
+        "zijbalk main rechts"
+        "footer footer rechts";
+}
+
+header {
+    grid-area: header;
+    background-color: green;
+    padding: 1rem;
+}
+
+aside {
+    grid-area: zijbalk;
+    background-color: yellow;
+}
+
+main {
+    grid-area: main;
+    background-color: blue;
+    padding: 1rem;
+}
+
+section {
+    grid-area: rechts;
+    background-color: hsl(301, 100%, 50%);
+}
+
+footer {
+    grid-area: footer;
+    background-color: hsl(200, 50%, 40%);
+    padding: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+    body {
+        grid-template-columns: 100px auto;
+        grid-template-areas: 
+            "header header"
+            "main main"
+            "zijbalk footer";
+    }
+
+    section {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+            "header"
+            "main"
+            "zijbalk"
+            "footer";
+    }
+    
+}
