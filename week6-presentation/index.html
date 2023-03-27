@@ -99,17 +99,11 @@ main {
 ...
 &lt;section id="about"&gt;...&lt;/section&gt;
             </pre>
-            <p>Bij het klikken ga je dan meteen naar de juiste sectie. Dit kan je ook met een smooth scroll doen, maar daarvoor het je een klein script nodig.</p>
+            <p>Bij het klikken ga je dan meteen naar de juiste sectie. Dit kan je ook met een smooth scroll doen.</p>
             <pre>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
+main {
+    scroll-behavior: smooth;
+}
             </pre>
         </section>
 
