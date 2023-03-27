@@ -1,0 +1,171 @@
+@font-face {
+    /*RobotoFlex-VariableFont options: slnt,wdth,wght, opsz,GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,*/
+    font-family: 'RobotoFlex';
+    src: url(RobotoFlex.ttf) format('truetype');
+}
+$primary: hsl(180, 86%, 50%);
+:root {
+    --background: hsl(180, 86%, 92%);
+        --color: hsl(180, 86%, 3%);
+    --link: $primary;
+    --secondary: hsl(157, 86%, 50%);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {  
+    --background: hsl(180, 86%, 3%);
+    --color: hsl(180, 86%, 92%);
+    }
+}
+    
+
+body {
+    font-family: "RobotoFlex";
+    font-weight: 300;
+    background-color: var(--background);
+    color: var(--color);
+    font-size: 2rem;
+    line-height: 1.3em;
+    padding: 0;
+}
+
+pre {
+    border: solid 1px var(--color);
+    padding: 1rem;
+    background-color: black;
+    max-width: 80vw;
+    overflow: auto;
+    max-height: 60vh;
+    font-size: 1.3rem;
+    line-height: 1.1em;
+}
+p {
+    margin: 0 0 1rem 0;
+}
+a {
+    color: var(--link);
+}
+main {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 2px;
+    scroll-snap-type: y mandatory;
+
+    section {
+        scroll-snap-align: start;
+        transform-style: preserve-3d;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--color);
+        padding: 10vh 10vw;
+       h1 {
+            text-transform: uppercase;
+            font-size: 4rem;
+            line-height: .9em;
+            text-shadow: 
+                    .06em .06em 0px #ED1F82,
+                    -.06em -.06em 0px #1FEDE0;
+                
+            text-align: center;
+            margin-bottom: 2rem;
+            font-variation-settings: 
+                    "wght" 1000, 
+                    "wdth" 50,
+                    "slnt" 0;
+            transition: all .3s ease-in-out;
+            cursor: zoom-in;
+            &:hover {
+                font-variation-settings: 
+                    "wght" 300, 
+                    "wdth" 100,
+                    "slnt" -90;
+                text-shadow: 
+                    .06em .06em 6px #ED1F82,
+                    -.06em -.06em 6px #1FEDE0;
+            }
+        }
+        &::after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateZ(-1px) scale(1.5);
+            background-size: 100%;
+            z-index: -1;
+        }
+        &#parallax::after {
+            background: url(../images/dark.jpeg) no-repeat center center;
+            background-size: cover;
+        }
+        &.no-parallax {
+            background-color: var(--background);
+            z-index: 999;
+        }
+    }
+}
+
+nav {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    position: sticky;
+    a {
+        display: block;
+        text-transform: uppercase;
+        font-size: calc(10vw + 20vh);
+        letter-spacing: .001em;
+        font-variation-settings: 
+            "wght" 600, 
+            "wdth" 60;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        &:hover {
+            font-variation-settings: 
+                "wght" 800, 
+                "wdth" 30;
+            transform: scale(1.2);
+        }
+
+        @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+                text-shadow: 
+                    .03em .03em 0px adjust-color($color: $primary, $hue: 40*$i, $lightness: -20%),
+                    -.03em -.03em 0px adjust-color($color: $primary, $hue: 40*$i, $lightness: 20%);
+                &:hover {
+                    color: adjust-hue($primary, 40*$i);
+                    text-shadow: 
+                    .03em .03em 0px adjust-color($color: $primary, $hue: 40*$i, $lightness: -30%),
+                    -.03em -.03em 0px adjust-color($color: $primary, $hue: 40*$i, $lightness: 30%);
+                
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    &.small {
+        background: rgba(0,0,0,.5);
+        backdrop-filter: blur(10px);
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        display: inline-flex;
+        flex-direction: column;
+        width: auto;
+        z-index: 1000;
+        gap: 0;
+        a {
+            font-size: 4vw;
+            line-height: 4vw;
+        }
+    }
+}
+

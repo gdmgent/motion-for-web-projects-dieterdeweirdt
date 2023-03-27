@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OFFF</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main>
+        <section class="home no-parallax">
+            <nav>
+                <a href="#variable-fonts">VF</a>
+                <a href="#scroll">SS</a>
+                <a href="#parallax">PL</a>
+                <a href="#mask">MSK</a>
+            </nav>
+        </section>
+        <nav class="small">
+            <a href="#variable-fonts">VF</a>
+            <a href="#scroll">SS</a>
+            <a href="#parallax">PL</a>
+            <a href="#mask">MSK</a>
+        </nav>
+        <section id="variable-fonts" class="parallax">
+            <h1>Variable Fonts</h1>
+            <p>Een font dat bepaalde eigenschappen dynamisch kan aanpassen. </p>
+            <p><a href="https://fonts.google.com/specimen/Roboto+Flex" target="_blank">Download een variable font zoals Roboto Flex</a></p>
+            <p><a href="https://material.io/blog/roboto-flex">Meer info over de eigenschappen (axis)</a></p>
+            <pre>
+@font-face {
+    /* RobotoFlex-VariableFont options: 
+        slnt,wdth,wght,opsz,
+        GRAD,XTRA,YOPQ,YTAS,
+        YTDE,YTFI,YTLC,YTUC */
+    font-family: 'RobotoFlex';
+    src: url(RobotoFlex.ttf) format('truetype');
+}
+h1 {
+    font-family: 'RobotoFlex';
+    font-size: 3rem;
+    font-variation-settings: 
+        "wght" 1000, 
+        "wdth" 50;
+}</pre>
+        </section>
+
+        <section class="">
+            <h1>Hover me !!!!</h1>
+            <p>Je kan die nu dynamisch aanpassen. bv bij een hover</p>
+            <pre>
+h1:hover {
+    font-variation-settings: 
+        "wght" 300, 
+        "wdth" 100;
+    //voeg ook een transition toe bij de h1 voor een smooth animatie
+}
+            </pre>
+        </section>
+
+        <section class="">
+            <h1>Hard drop shadow</h1>
+            <p>Het TikTok shadow effect is een dubbele harde schaduw</p>
+            <pre>
+h1 {
+//  text-shadow: x y blur color, ... ; 
+    text-shadow: 
+        .06em .06em 0px #ED1F82,
+        -.06em -.06em 0px #1FEDE0;
+}
+            </pre>
+        </section>
+
+        <section id="scroll" class="no-parallax">
+            <h1>Scroll Snap</h1>
+            <p>Een scroll snap zorgt ervoor dat de content 'magnetisch' snapt naar een van de zijdes van je browser venster. Op die manier kan je er steeds voor zorgen dat de inhoud mooi in beeld staat (zoals deze presentatie).</p>
+            <pre>
+main {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    section {
+        width: 100vw;
+        height: 100vh;
+        scroll-snap-align: start;
+    }
+}
+            </pre>
+        </section>
+
+        <section id="scroll" class="no-parallax">
+            <h1>ScrollIntoView navigation</h1>
+            <p>In een One-Page website kan je ook een navigatie maken. Hierbij leg je een link naar de anchors (id binnen html) via het hash teken.</p>
+            <pre>
+&lt;a href="#about"&gt;About us&lt;/a&gt;
+...
+&lt;section id="about"&gt;...&lt;/section&gt;
+            </pre>
+            <p>Bij het klikken ga je dan meteen naar de juiste sectie. Dit kan je ook met een smooth scroll doen, maar daarvoor het je een klein script nodig.</p>
+            <pre>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+            </pre>
+        </section>
+
+        <section id="parallax" class="parallax">
+            <h1>Parallax effect</h1>
+            <p>
+                Het parallax effect is een effect waarbij de achtergrond een andere snelheid heeft dan de voorgrond. Hierdoor lijkt het alsof de achtergrond verder weg is.
+            </p>
+            
+            <img src="./images/parallax.png" alt="parallax">
+        </section>
+        <section id="" class="no-parallax">
+            <h1>Parallax effect via CSS</h1>
+            <p>
+                In CSS kunnen we dit bereiken door gebruik te maken van de translateZ functie. Dit in combinatie met <code>transform-style: preserve-3d;</code> zorgt ervoor dat de achtergrond een andere snelheid heeft dan de voorgrond. Het dieptezicht kan je aanpassen via de eigenschap <code>perspective: 2px;</code>
+            </p>
+            <img src="./images/parallax.png" alt="parallax">
+        </section>
+
+        <section id="" class="no-parallax">
+            <h1>Parallax effect via SCSS</h1>
+            <pre>
+main {
+    perspective: 2px;
+    section {
+        transform-style: preserve-3d;
+        &::after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateZ(-1px) scale(1.5);
+            background-size: 100%;
+            z-index: -1;
+            background: url(../images/dark.jpeg) no-repeat center center;
+            background-size: cover;
+        }
+        &.no-parallax {
+            background-color: var(--background);
+            z-index: 999;
+        }
+    }
+}
+</pre>
+        </section>
+        <section id="mask" class="no-parallax">
+            <h1>SVG mask in CSS</h1>
+            <p>
+                Een SVG mask is een SVG die je kan gebruiken om een andere afbeeldingen te maskeren. Je kan dit gebruiken om een afbeelding te laten vervagen of om een afbeelding te laten veranderen in een bepaalde vorm.
+            </p>
+            <img src="images/luminance-mask.svg" alt="luminance mask">
+        </section>
+        <section id="mask" class="no-parallax">
+            <h1>SVG mask in CSS</h1>
+            <p>Dit kan via de mask-image en bijhorende css eigenschappen. Echter reageert niet elke browser op de standaard css en moet je dus ook de -webkit variant toevoegen.</p>
+            <p>Wil je weten welke eigenschap reeds standaard is geimplementeerd en welke een eventuele -webkit prefix moeten hebben dan kan je <a href="https://caniuse.com/?search=image-mask">caniuse.com</a> gebruiken.</p>
+            <pre>
+img {
+    mask-image: url(../images/mask.svg);
+    mask-type: alpha;
+    mask-repeat: repeat-y;
+    mask-size: 300% 100%;
+    mask-position: left;
+    -webkit-mask-image: url(../images/mask.svg);
+    -webkit-mask-type: alpha;
+    -webkit-mask-repeat: repeat-y;
+    -webkit-mask-size: 300% 100%;
+    -webkit-mask-position: left;                    
+}
+            </pre>
+        </section>
+        
+    </main>
+    
+    <script src="scripts/app.js"></script>
+</body>
+</html>
