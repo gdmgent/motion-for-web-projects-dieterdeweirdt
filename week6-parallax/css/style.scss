@@ -1,0 +1,246 @@
+@font-face {
+    /*RobotoFlex-VariableFont options: slnt,wdth,wght, opsz,GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,*/
+    font-family: 'RobotoFlex';
+    src: url(RobotoFlex.ttf) format('truetype');
+}
+$primary: hsl(180, 86%, 50%);
+:root {
+    --background: hsl(180, 86%, 92%);
+        --color: hsl(180, 86%, 3%);
+    --link: $primary;
+    --secondary: hsl(157, 86%, 50%);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+    :root {  
+    --background: hsl(180, 86%, 3%);
+    --color: hsl(180, 86%, 92%);
+    }
+}
+    
+
+body {
+    font-family: "RobotoFlex";
+    font-weight: 300;
+    background-color: var(--background);
+    color: var(--color);
+    font-size: 3rem;
+    padding: 0;
+}
+
+a {
+    color: var(--link);
+}
+
+main {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 2px;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth; /* geen script nodig */
+
+    section {
+        scroll-snap-align: start;
+        transform-style: preserve-3d;
+        position: relative;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--color);
+        padding: 10vh 10vh;
+        &.home {
+            background: url(../images/bg.webp) repeat center center;
+            background-blend-mode: none;
+        }
+        h1 {
+            text-transform: uppercase;
+            font-size: 13vh;
+            line-height: .9em;
+            text-shadow: 
+                    .06em .06em 0px adjust-color($color: $primary, $hue: 140, $lightness: -20%),
+                    -.06em -.06em 0px adjust-color($color: $primary, $hue: 80, $lightness: 20%);
+                
+            text-align: center;
+            margin-bottom: 2rem;
+            &::first-letter {
+                font-size: 1.5em;
+                font-variation-settings: 
+                    "wght" 1000, 
+                    "wdth" 100;
+            }
+        }
+        &::after {
+            content: " ";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform: translateZ(-1px) scale(1.5);
+            background-size: 100%;
+            z-index: -1;
+        }
+        &#experience::after {
+            background: url(../images/offf.jpg) no-repeat center center;
+            background-size: cover;
+        }
+        &#food::after {
+            background: url(../images/tapas.jpeg) no-repeat center center;
+            background-size: cover;
+        }
+        &#friends {
+            figure {
+                margin-top: -4rem;
+                z-index: -1;
+                position: relative;
+                img:nth-of-type(2) {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center top;
+                    display: block;
+                    mask-image: url(../images/mask.svg);
+                    mask-type: alpha;
+                    mask-repeat: repeat-y;
+                    mask-size: 300% 100%;
+                    mask-position: left;
+                    -webkit-mask-image: url(../images/mask.svg);
+                    -webkit-mask-type: alpha;
+                    -webkit-mask-repeat: repeat-y;
+                    -webkit-mask-size: 300% 100%;
+                    -webkit-mask-position: left;
+                    transition: all 3s ease;
+                    
+                }
+                &:hover img {
+                    -webkit-mask-position: right;
+
+                }
+                &::after {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    content: " ";
+                    display: block;
+                    border: dashed 10px var(--color);
+                    transform: rotate(3deg);
+                }
+            }
+        }
+        &.no-parallax {
+            background-color: var(--background);
+            z-index: 999;
+        }
+    }
+}
+
+nav {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    position: sticky;
+    a {
+        
+        display: block;
+        text-transform: uppercase;
+        font-size: calc(20vw + 20vh);
+        letter-spacing: .001em;
+        font-variation-settings: 
+            "wght" 600, 
+            "wdth" 50;
+        transition: all 0.5s ease;
+        text-decoration: none;
+        &:hover {
+            font-variation-settings: 
+                "wght" 1000, 
+                "wdth" 100;
+            transform: scale(1.2);
+        }
+
+        @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+                text-shadow: 
+                    .03em .03em 0px adjust-color($color: $primary, $hue: 40*$i, $lightness: -20%),
+                    -.03em -.03em 0px adjust-color($color: $primary, $hue: 40*$i, $lightness: 20%);
+                &:hover {
+                    color: adjust-hue($primary, 40*$i);
+                    text-shadow: 
+                    .03em .03em 0px adjust-color($color: $primary, $hue: 40*$i, $lightness: -30%),
+                    -.03em -.03em 0px adjust-color($color: $primary, $hue: 40*$i, $lightness: 30%);
+                
+                    z-index: 1;
+                }
+            }
+        }
+    }
+
+    &.small {
+        background: rgba(0,0,0,.5);
+        backdrop-filter: blur(10px);
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        display: inline-flex;
+        flex-direction: column;
+        width: auto;
+        z-index: 1000;
+        gap: 0;
+        a {
+            font-size: 8vw;
+            line-height: 8vw;
+        }
+    }
+}
+
+.speakers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5vw;
+    .speaker {
+        text-decoration: none;
+        box-shadow: 2px 2px 10px rgba(0,0,0,.2);;
+        position: relative;
+        img {
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+        h2 {
+            position: absolute;
+            width: 100%;
+            bottom: -4rem;
+            display: flex;
+            justify-content: space-between;
+            text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+            line-height: 1em;;
+            font-size: 3rem;
+            font-variation-settings: 
+                    "wght" 300, 
+                    "wdth" 50;
+            transition: all 0.3s ease;
+            &:after {
+                margin-left: .5rem;
+                content: "➚";
+            }
+        }
+        transition: all 0.3s ease;
+        &:hover {
+                transform: scale(1.2) rotate(-8deg);
+                h2 {
+                    transform: translateY(-4rem) translateX(2rem);
+                    font-variation-settings: 
+                    "wght" 900, 
+                    "wdth" 20;
+                }
+        }
+
+    }
+}

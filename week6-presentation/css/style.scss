@@ -5,18 +5,12 @@
 }
 $primary: hsl(180, 86%, 50%);
 :root {
-    --background: hsl(180, 86%, 92%);
-        --color: hsl(180, 86%, 3%);
+    --background: hsl(180, 86%, 3%);
+    --color: hsl(180, 86%, 92%);
     --link: $primary;
     --secondary: hsl(157, 86%, 50%);
 }
 
-@media screen and (prefers-color-scheme: dark) {
-    :root {  
-    --background: hsl(180, 86%, 3%);
-    --color: hsl(180, 86%, 92%);
-    }
-}
     
 
 body {
