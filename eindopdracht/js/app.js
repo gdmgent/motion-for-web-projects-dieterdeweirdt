@@ -1,13 +1,11 @@
 gsap.registerPlugin(ScrollTrigger);
 ScrollTrigger.defaults({
-    markers: {startColor: "green", endColor: "red"},
-    
+    markers: false,
+    invalidateOnRefresh: true,
 });
 
 let sections = gsap.utils.toArray("section");
-
 var global_global_tl = gsap.timeline();
-
 
 sections.forEach(section => {
   let scrollTween = gsap.to(section, {
@@ -28,45 +26,12 @@ sections.forEach(section => {
 });
 
 function start(method) {
-  console.log('start -> ' + method);
 
 }
 
-function dietde2 (method) {
-  let section = document.querySelector("#dietde2");
-
-  if(!section.init) {
-    section.init = true;
-    section.tl.to("#dietde2 .box", {
-      width: "100vw",
-      height: "100vh",
-      left: 0,
-      top: 0,
-      rotate: 360,
-      backgroundColor: "hsla(120, 100%, 50%, 0.3)",
-    }).to("#dietde2 .box", {
-      width: "20vw",
-      height: "20vw",
-      left: "40vw",
-      top: "calc(50vh - 10vw)",
-      backgroundColor: "white", 
-    });
-  }
-}
-
-
-
-function dietde3 (method) {
-  let section = document.querySelector("#dietde3");
-  if(method == 'enter') {
-    section.tl.to("#dietde3 .box", {
-      x: 130,
-      backgroundColor: "green"
-    });
-  }
+function end(method) {
 
 }
-
 
 function enter(section) {
   var fnName = section.id;
@@ -85,6 +50,7 @@ function enter(section) {
     window[fnName]('enter');
   }
 }
+
 function leave(section) {
   var fnName = section.id;
   hidebox(section);
@@ -92,6 +58,7 @@ function leave(section) {
     window[fnName]('leave');
   }
 }
+
 function leaveBack(section) {
   var fnName = section.id;
   hidebox(section);

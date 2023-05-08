@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Sacramento&display=swap');
+
 :root {
     --back-color: #fff;
     --front-color: #000;
@@ -44,24 +46,29 @@ section#start {
     }
 }
 
-@for $i from 1 through 50 {
-    section:nth-child(#{$i}) {
-      &::after {
+section#start, section#end {
+    padding-top: 70vh;
+    h1 {
+        font-family: Sacramento;
+        font-size: 3rem;
+        font-weight: 400;
+    }
+    h1, p {
+        text-align: center;
+    }
+}
+
+section:nth-child(even) {
+    &::after {
         display: block;
-        content: "";
+        content: "asdf";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         z-index: -10;
-        background-color: hsl( $i*30 , 50%, 50%);
-      }
+        opacity: .05;
+        background-color: var(--front-color);
     }
-  }
-
-  #dietde2 {
-    .box {
-
-    }
-  }
+}
