@@ -55,7 +55,7 @@ section#start h1, section#start p, section#end h1, section#end p {
 
 section:nth-child(even)::after {
   display: block;
-  content: "asdf";
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

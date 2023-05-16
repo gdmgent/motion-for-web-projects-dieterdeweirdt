@@ -37,6 +37,7 @@ function enter(section) {
   var fnName = section.id;
   showbox(section);
   if(fnName) {
+    section.init = false;
     section.tl = gsap.timeline({
       scrollTrigger : {
         trigger: section,

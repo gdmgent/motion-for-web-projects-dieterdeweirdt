@@ -61,7 +61,7 @@ section#start, section#end {
 section:nth-child(even) {
     &::after {
         display: block;
-        content: "asdf";
+        content: "";
         position: absolute;
         top: 0;
         left: 0;
